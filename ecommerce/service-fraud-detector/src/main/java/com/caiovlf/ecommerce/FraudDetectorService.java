@@ -5,6 +5,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class FraudDetectorService {
@@ -15,7 +16,7 @@ public class FraudDetectorService {
                 "ECOMMERCE_NEW_ORDER",
                 fraudService::parse,
                 Order.class,
-                new HashMap<String, String>())){
+                Map.of())){
             service.run();
         }
 
@@ -35,7 +36,6 @@ public class FraudDetectorService {
         }
         System.out.println("Order has been processed");
     }
-
 
     private static Properties properties() {
         var properties = new Properties();
